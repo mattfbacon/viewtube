@@ -1,4 +1,4 @@
-import { CacheInterceptor, Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
+import { CacheInterceptor, CacheTTL, Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ContinueResult } from 'ytpl';
 import { PlaylistResultDto } from './dto/playlist-result.dto';
@@ -11,6 +11,7 @@ export class PlaylistsController {
   constructor(private playlistsService: PlaylistsService) {}
 
   @Get(':playlistId')
+  @CacheTTL(600000)
   getPlaylist(
     @Param('playlistId') playlistId: string,
     @Query('pages') pages: number

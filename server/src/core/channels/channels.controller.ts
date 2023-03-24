@@ -32,14 +32,14 @@ export class ChannelsController {
 
   @Get(':id/thumbnail/tiny.jpg')
   @Header('Cache-Control', 'public, max-age=18000')
-  @CacheTTL(18000)
+  @CacheTTL(18000000)
   getTinyThumbnailJpg(@Param('id') id: string, @Res() reply: FastifyReply): void {
     this.channelsService.getTinyThumbnail(reply, id);
   }
 
   @Get(':id/thumbnail/tiny.webp')
   @Header('Cache-Control', 'public, max-age=18000')
-  @CacheTTL(18000)
+  @CacheTTL(18000000)
   getTinyThumbnailWebp(@Param('id') id: string, @Res() reply: FastifyReply): void {
     this.channelsService.getTinyThumbnail(reply, id);
   }
@@ -49,7 +49,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelInfo(@Param('id') channelId: string): Promise<ChannelInfoDto> {
     return this.channelsService.getChannelInfo(channelId);
   }
@@ -59,7 +59,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelHome(@Param('id') channelId: string): Promise<ChannelHomeDto> {
     return this.channelsService.getChannelHome(channelId);
   }
@@ -69,7 +69,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelVideos(
     @Param('id') channelId: string,
     @Query('sort') sortBy: 'newest' | 'oldest' | 'popular'
@@ -82,7 +82,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelVideosContinuation(
     @Query('continuation') continuation: string
   ): Promise<ChannelVideosContinuationDto> {
@@ -94,7 +94,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelShorts(
     @Param('id') channelId: string,
     @Query('sort') sortBy: 'newest'
@@ -107,7 +107,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelLivestreams(
     @Param('id') channelId: string,
     @Query('sort') sortBy: 'newest'
@@ -120,7 +120,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelPlaylists(@Param('id') channelId: string): Promise<ChannelPlaylistsDto> {
     return this.channelsService.getChannelPlaylists(channelId);
   }
@@ -130,7 +130,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelPlaylistsContinuation(
     @Query('continuation') continuation: string
   ): Promise<ChannelPlaylistsContinuationDto> {
@@ -142,7 +142,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   searchChannel(
     @Param('id') channelId: string,
     @Query('query') query: string
@@ -155,7 +155,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   searchChannelContinuation(
     @Query('continuation') continuation: string
   ): Promise<ChannelSearchContinuationDto> {
@@ -167,7 +167,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getRelatedChannelsContinuation(
     @Query('continuation') continuation: string
   ): Promise<RelatedChannelsContinuationDto> {
@@ -179,7 +179,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelCommunityPosts(@Param('id') channelId: string): Promise<ChannelCommunityPostsDto> {
     return this.channelsService.getChannelCommunityPosts(channelId);
   }
@@ -189,7 +189,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelCommunityPostsContinuation(
     @Query('continuation') continuation: string,
     @Query('innertube') innerTubeApi: string
@@ -202,7 +202,7 @@ export class ChannelsController {
   @ApiResponse({ status: 404 })
   @ApiResponse({ status: 500 })
   @UseInterceptors(CacheInterceptor)
-  @CacheTTL(3600)
+  @CacheTTL(3600000)
   getChannelStats(@Param('id') channelId: string): Promise<ChannelStatsDto> {
     return this.channelsService.getChannelStats(channelId);
   }
